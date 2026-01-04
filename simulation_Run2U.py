@@ -39,11 +39,11 @@ a
     correlation_12 = 0.9  # 
     correlation_13 = 0.95  # 
     correlation_23 = 0.85  # 
-    # 定义协方差矩阵
+  
     cov_matrix = np.array([[1, correlation_12, correlation_13],
                            [correlation_12, 1, correlation_23],
                            [correlation_13, correlation_23, 1]])
-    # 生成500个样本
+   
     mean = [0, 0, 0]  # 设定均值为00.9
     Upara = np.random.multivariate_normal(mean, cov_matrix, size=n_sample) # u1, u2, u3;latent variable;
 
@@ -52,11 +52,10 @@ a
     A = Beta[1]
     C = Beta[2]
 
-    # 定义噪声的协方差矩阵
     cov_matrix_noise = np.array([[1, 0, 0],
                            [0, 1, 0],
                            [0, 0, 1]])
-    # 生成500个噪声样本
+
     mean_noise = [0, 0, 0]  # 设定均值为0
     Noise = np.random.multivariate_normal(mean_noise, cov_matrix_noise, size=n_sample) # noise1, noise2, noise3;
 
@@ -102,3 +101,4 @@ f = open('store_simu_ansLeft_Noise.pckl', 'wb')
 pickle.dump(ans_left, f)
 f.close()
 print(f"simu_ansLeft: {ans_left}")
+
