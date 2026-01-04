@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 30 09:18:17 2022
+Created on 2025
 
 @author: lenovo
 """
@@ -52,11 +52,11 @@ print(list(TCdata))
 ## ########## 166 brain region vol --->has na in column of Left_S_interm_prim_Jensen;
 Imagecol = TCdata.iloc[:,3:171] # 977*168
 has_nan = np.isnan(Imagecol).any()
-# 查找具有 NaN 值的列的索引
+
 cols_with_nan = Imagecol.columns[has_nan].tolist() #['Left_S_interm_prim_Jensen']
 has_nan_row = Imagecol[cols_with_nan].isnull().any(axis=1)
 Imagecol_NA = Imagecol[has_nan_row] # 2*168
-# 使用布尔索引找出不含有 NaN 值的行
+
 no_nan_row = ~Imagecol[cols_with_nan].isnull().any(axis=1)
 Imagecol_clear = Imagecol[no_nan_row] # 975*168
 
@@ -92,7 +92,7 @@ pickle.dump(fit_params, f)
 f.close()
 
 ########## adjust 1. NLE; 2.PSY;
-path1 = r"D:/DATA_Fudan/IMAGEN/IMAGEN_FS_FU2ana2403/LEQ_Brain_sym_JJsubgroup/dataComFU2_etc_szPRS_s975_269.csv"
+path1 = r".../dataComFU2_etc_szPRS_s975_269.csv"
 brainarea_data_clean = pd.read_csv(path1, index_col=None) # 975*269
 
 brainarea_data_clean.loc[:, "age2"] = brainarea_data_clean.loc[:, "age"] ** 2 # 975*270
@@ -105,7 +105,7 @@ print(brainarea_data_clean.columns[225])
 for i in (brainarea_data_clean.columns[225:226].union(brainarea_data_clean.columns[268:269])):
     fit_params1[i] = get_params(brainarea_data_clean.loc[:,["age",'Gender_Male','site','age2', 'EstimatedTotalIntraCranialVol']],brainarea_data_clean.loc[:,str(i)])
 
-# apply--> residual vol for sub
+# apply
 diffdataXZ = brainarea_data_clean.copy()
 for i in (diffdataXZ.columns[225:226].union(diffdataXZ.columns[268:269])):
     diffdataXZ.loc[:,i] -= fit_params1[i].loc["const"] + np.dot(diffdataXZ.loc[:,["age",'Gender_Male','site','age2', 'EstimatedTotalIntraCranialVol']].values,fit_params1[i].iloc[1:].values)
@@ -135,7 +135,7 @@ diffdata = pd.read_csv(path2, index_col=None)
 print(list(diffdata))
 
 imageRes = diffdata.copy() # 975*166
-u,s,v = np.linalg.svd(imageRes)  ## 977 subjects, have NA in vol， SVD did not converge；here 975，No NA in vol;
+u,s,v = np.linalg.svd(imageRes)  ## here 975，No NA in vol;
 # data: 975*166, u: 975*975,s, 166*1, v:166*166
 num_components = determine_num_components(s, desired_energy_percentage=0.80) # 29
 train_y_svd = np.dot(u[:,:29], np.diag(s[:29])) # dim reduced to 29 dims, 975*29
@@ -184,3 +184,4 @@ train_y_comSvd = np.hstack((diff166_svd, PRS_svd)) # 975*30, C
 column_names = ['diff166svd' + str(i+1) for i in range(29)] + ['szPRSsvd1']
 train_y_comSvd = pd.DataFrame(train_y_comSvd, columns=column_names)
 train_y_comSvd.to_csv(.../.csv', index=False)
+
