@@ -150,14 +150,14 @@ for run_number in range(1, num_runs + 1):
         filtered_results.append({'LeafIndex': Leaf_Index, 'SubsetIndices': Subset_indices})
 
         # save tree results while there is at least 1 leaf node has H = 10;
-        filename = f'/home1/Fengnana/DATA210725/2024normativeModelProject/pythonProject_mCCA/store_Imagen_tree{run_number}.pckl'
+        filename = f'.../pythonProject_mCCA/store_Imagen_tree{run_number}.pckl'
         f = open(filename, 'wb')
         pickle.dump((tree, tree_root, data_tree, membership), f)
         f.close()
         print(f'Saved Tree for run {run_number} to {filename}')
 
         # save the Homo leaf index and subset index of tree{run_number};
-        filename1 = f'/home1/Fengnana/DATA210725/2024normativeModelProject/pythonProject_mCCA/store_HomeRes_tree{run_number}.pckl'
+        filename1 = f'.../pythonProject_mCCA/store_HomeRes_tree{run_number}.pckl'
         f = open(filename1, 'wb')
         pickle.dump(filtered_results, f)
         f.close()
@@ -166,3 +166,4 @@ for run_number in range(1, num_runs + 1):
 # filename = f'store1_IMAGEN_Traintree.pckl'
 # with open(filename, 'rb') as f:
 #     tree, tree_root, data_tree, membership = pickle.load(f)
+
