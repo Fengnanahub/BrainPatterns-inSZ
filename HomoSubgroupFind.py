@@ -31,7 +31,7 @@ def HomoSubgroupDetect(x, y, z, membership):
         results_leafHomo.append(result_entry) # list,length = num of leaf node;
     return results_leafHomo
 
-## find whether there is leaf node with H =10;
+## find leaf node with H =10;
 def HomoSubgroupGet(tree, membership):
     # get variable saved in tree
     x= tree.x
@@ -48,6 +48,7 @@ def HomoSubgroupGet(tree, membership):
             print(f"leafIndex: {leafIndex}")
             print(f"Subset Indices: {subsetIndices}")
     return leafIndex, subsetIndices
+
 
 
 
