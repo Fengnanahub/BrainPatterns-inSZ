@@ -14,7 +14,6 @@ def HomoSubgroupDetect(x, y, z, membership):
     # loop every leaf node
     results_leafHomo = []
     for leafi in range(len(unique_values)):
-        # 根据 member 的值选择相应的行
         subset_indices = np.where(membership == unique_values[leafi])[0]
         x_subset = x[subset_indices, :]
         y_subset = y[subset_indices, :]
@@ -49,6 +48,7 @@ def HomoSubgroupGet(tree, membership):
             print(f"leafIndex: {leafIndex}")
             print(f"Subset Indices: {subsetIndices}")
     return leafIndex, subsetIndices
+
 
 
 
