@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 30 09:44:01 2022
+Created on 2025
 
 @author: lenovo
 """
@@ -71,7 +71,6 @@ def HomoSubgroupDetect(x, y, z, membership):
     # loop every leaf node
     results_leafHomo = []
     for leafi in range(len(unique_values)):
-        # 根据 member 的值选择相应的行
         subset_indices = np.where(membership == unique_values[leafi])[0]
         x_subset = x[subset_indices, :]
         y_subset = y[subset_indices, :]
@@ -166,4 +165,5 @@ for run_number in range(1, num_runs + 1):
 # filename = f'store1_IMAGEN_Traintree.pckl'
 # with open(filename, 'rb') as f:
 #     tree, tree_root, data_tree, membership = pickle.load(f)
+
 
