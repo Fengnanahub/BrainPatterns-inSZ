@@ -1,6 +1,6 @@
 ##  mcca project resulted loading or contribution (based on a2009s+aseg),view;
 
-# =====================chapter 1 loading view ===========================
+# =====================loading view ===========================
 rm(list = ls())
 R.version.string # 查看R版本
 # R4.5.1, Tools → Global Options → General设置；切换R version，all packages need to be installed again.
@@ -134,9 +134,4 @@ library(htmlwidgets)  # 用于保存 plotly / ggseg3d 图
 # 保存为 HTML 文件
 # saveWidget(p, file = ".../write_loading_back_25xin/PIC_brain_R/loading_allRegion/G1_subcor18_3d.html", selfcontained = TRUE)
 # # 手动export保存
-# ========================== chapter 1 loading view END =========================
-
-
-
-# =====================chapter 2 contribution view ===========================
-# same
+# ==========================loading view END =========================
